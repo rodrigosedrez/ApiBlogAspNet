@@ -8,16 +8,19 @@ namespace ApiBlog.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            //Table
+            //Tabela 
             builder.ToTable("Category");
-            //PrimaryKey
+
+            // Chave Primaria
             builder.HasKey(x => x.Id);
-            //Identity
+
+            // Identity
             builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
             .UseIdentityColumn();
-            //Property
-            builder.Property(x => x.Id)
+
+            // Property
+            builder.Property(x => x.Name)
             .IsRequired()
             .HasColumnName("Name")
             .HasColumnType("NVARCHAR")
@@ -29,7 +32,7 @@ namespace ApiBlog.Data.Mappings
             .HasColumnType("VARCHAR")
             .HasMaxLength(80);
 
-            //Indices
+            // INdices
             builder
             .HasIndex(x => x.Slug, "IX_Category_Slug")
             .IsUnique();

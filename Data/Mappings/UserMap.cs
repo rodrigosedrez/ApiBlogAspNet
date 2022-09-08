@@ -60,8 +60,6 @@ namespace ApiBlog.Data.Mappings
                         .HasConstraintName("FK_UserRole_UserId")
                         .OnDelete(DeleteBehavior.Cascade));
 
-
-
         }
 
     }

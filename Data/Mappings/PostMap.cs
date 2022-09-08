@@ -8,57 +8,62 @@ namespace ApiBlog.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<Post> builder)
         {
-            //Table
+
+            // Tabela
             builder.ToTable("Post");
-            //PrimaryKey
+
+            // Chave Primária
             builder.HasKey(x => x.Id);
-            //Identity
+
+            // Identity
             builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd()
-            .UseIdentityColumn();
-            //Property
+                .ValueGeneratedOnAdd()
+                .UseIdentityColumn();
 
+            // Propriedades
             builder.Property(x => x.LastUpdateDate)
-            .IsRequired()
-            .HasColumnName("LastUpdateDate")
-            .HasColumnType("SMALLDATETIME")
-            .HasMaxLength(60)
-            .HasDefaultValueSql("getdate()");
-            //Indices
-            builder
-            .HasIndex(x => x.Slug, "IX_Post_Slug")
-            .IsUnique();
+                .IsRequired()
+                .HasColumnName("LastUpdateDate")
+                .HasColumnType("SMALLDATETIME")
+                .HasMaxLength(60)
+                .HasDefaultValueSql("GETDATE()");
+            // .HasDefaultValue(DateTime.Now.ToUniversalTime());
 
-            //Relacionship
+            // Índices
             builder
-            .HasOne(x => x.Author)
-            .WithMany(x => x.Posts)
-            .HasConstraintName("FK_Post_Author")
-            .OnDelete(DeleteBehavior.Cascade);
+                .HasIndex(x => x.Slug, "IX_Post_Slug")
+                .IsUnique();
 
+            // Relacionamentos
             builder
-            .HasOne(x => x.Category)
-            .WithMany(x => x.Posts)
-            .HasConstraintName("FK_Post_Category")
-            .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(x => x.Author)
+                .WithMany(x => x.Posts)
+                .HasConstraintName("FK_Post_Author")
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder
-            .HasMany(x => x.Tags)
-            .WithMany(x => x.Posts)
-            .UsingEntity<Dictionary<string, object>>(
-                "PostTag",
-                post => post
+                .HasOne(x => x.Category)
+                .WithMany(x => x.Posts)
+                .HasConstraintName("FK_Post_Category")
+                .OnDelete(DeleteBehavior.Cascade);
+            // Relacionamentos
+            builder
+                .HasMany(x => x.Tags)
+                .WithMany(x => x.Posts)
+                .UsingEntity<Dictionary<string, object>>(
+                    "PostTag",
+                    post => post
                         .HasOne<Tag>()
                         .WithMany()
                         .HasForeignKey("PostId")
                         .HasConstraintName("FK_PostRole_PostId")
-                        tag => tag
+                        .OnDelete(DeleteBehavior.Cascade),
+                    tag => tag
                         .HasOne<Post>()
                         .WithMany()
                         .HasForeignKey("TagId")
                         .HasConstraintName("FK_PostTag_TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-            );
+                        .OnDelete(DeleteBehavior.Cascade));
 
         }
 
