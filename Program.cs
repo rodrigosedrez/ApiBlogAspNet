@@ -1,6 +1,20 @@
-var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+namespace ApiBlog
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
+            var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+            app.MapGet("/", () => "Hello World!");
 
-app.Run();
+            app.Run();
+        }
+    }
+}
+
+
+
+
+
