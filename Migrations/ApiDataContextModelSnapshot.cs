@@ -120,7 +120,7 @@ namespace ApiBlogAspNet.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("ApiBlog.Models.Tag", b =>

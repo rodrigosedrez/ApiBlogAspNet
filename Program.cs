@@ -1,3 +1,7 @@
+
+ using ApiBlog.Data;
+
+
 namespace ApiBlog
 {
     public class Program
@@ -5,14 +9,26 @@ namespace ApiBlog
         static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            var app = builder.Build();
+            builder.Services.AddControllers()
+            .ConfigureApiBehaviorOptions(options =>
+            {
+                options.SuppressModelStateInvalidFilter =true;
+            });
+            builder.Services.AddDbContext<ApiDataContext>();
 
-            app.MapGet("/", () => "Hello World!");
+
+            var app = builder.Build();
+            app.MapControllers();
 
             app.Run();
         }
     }
 }
+
+
+
+
+
 
 
 
