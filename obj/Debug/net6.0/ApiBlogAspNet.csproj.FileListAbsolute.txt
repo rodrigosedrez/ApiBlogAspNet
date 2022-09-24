@@ -61,3 +61,5 @@ C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
 C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
 C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\System.Web.WebPages.dll
 C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\AULAS\ApiBlogAspNet\bin\Debug\net6.0\SecureIdentity.dll
