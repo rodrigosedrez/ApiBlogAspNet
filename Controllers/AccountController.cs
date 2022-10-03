@@ -19,7 +19,7 @@ namespace ApiBlogAspNet.Controllers
         //}
 
 
-        [HttpPost(template: "v1/accounts/")]
+        [HttpPost(template: "v1/accounts")]
          public async Task<IActionResult> Post(
         [FromBody] RegisterViewModel model,
         [FromServices] ApiDataContext context)  

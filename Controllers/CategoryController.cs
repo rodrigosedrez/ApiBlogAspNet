@@ -22,7 +22,7 @@ namespace ApiBlogAspNet.Controllers
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, new ResultViewModel<List<Category>> ("Falha interna no servidor"));
+                return StatusCode(500, new ResultViewModel<List<Category>> ("Falha interna no servidor"+ex));
             }
 
         }
@@ -136,7 +136,7 @@ namespace ApiBlogAspNet.Controllers
                 return StatusCode(500,new ResultViewModel<Category>("Falha interna no servidor"));
             }
         }
-
+        
     }
 }
 
